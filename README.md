@@ -14,7 +14,7 @@ ENV NODE_ENV production
 RUN powershell -NoProfile -Command Restart-Service WAS -Force
 
 ADD . /site
-RUN powershell -NoProfile -Command Import-module IISAdministration; New-IISSite -Name 'Production Site' -PhysicalPath C:\\site -BindingInformation '*:8000:'
+RUN powershell -NoProfile -Command Import-module IISAdministration; New-IISSite -Name 'Production Site' -PhysicalPath C:\site -BindingInformation '*:8000:'
 RUN
 
 EXPOSE 8000
