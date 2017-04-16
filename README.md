@@ -6,7 +6,7 @@ This is a Windows Container image. You can find the [Dockerfile](https://github.
 
 ## Pull this image from Docker Hub
 
-> Make sure your Docker is running in [Windows Container mode](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
+> Before pulling, make sure your Docker is running in [Windows Container mode](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 Run `docker pull compulim/iisnode`, to pull the image to your local repository.
 
