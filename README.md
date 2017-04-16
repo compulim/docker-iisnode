@@ -24,7 +24,9 @@ RUN
 EXPOSE 8000
 ```
 
-## Build it
+## Build your own Docker image
+
+Before running your Docker image in a container, you need to use your Dockerfile to build your own Docker image.
 
 Run `docker build -t <your-image-name> <path-to-your-dockerfile>`.
 
