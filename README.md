@@ -30,7 +30,7 @@ Before running your Docker image in a container, you need to use your Dockerfile
 
 Run `docker build -t <your-image-name> <path-to-your-dockerfile>`.
 
-> If you found Docker is taking long time to send many files to its daemon, you can add a `.dockerignore` or move your `Dockerfile` deeper inside your file hierarchy.
+> If you found Docker is taking long time and send many unnecessary files to its daemon, you can add a `.dockerignore` or move your `Dockerfile` deeper inside your file hierarchy.
 
 ## Run it on Docker
 
@@ -38,7 +38,7 @@ Run `docker run -p 8000:8000 --name <your-container-name> <your-image-name>`.
 
 This will run the Docker image and expose port 8000.
 
-> To expose as port 80, replace it with `-p 80:8000`.
+> To expose as host port 80, replace it with `-p 80:8000`.
 
 To connect to your web server, first, you need to find out the IP address associated to the container.
 
@@ -56,13 +56,15 @@ There are few more steps to enable Failed Request Tracing and view its logs:
 
 1. Enable Failed Request Tracing for the site
 2. Create a tracing rule
-3. Copy the log to local drive
+3. Copy the log and view it locally
 
 ## Enable Failed Request Tracing for the site
 
-Run `C:\Windows\system32\inetsrv\appcmd configure trace "Production Site" /enablesite`.
+Run `C:\Windows\system32\inetsrv\appcmd.exe configure trace "Production Site" /enablesite`.
 
 It will enable Failed Request Tracing for site named "Production Site". By default, it will write to `C:\inetpub\logs\FailedReqLogFiles\W3SVC0000000000`, with up to 50 rolling files.
+
+> You can find more information on [TechNet](https://technet.microsoft.com/en-us/library/cc725786(v=ws.10).aspx).
 
 ## Create a tracing rule
 
@@ -84,10 +86,16 @@ Add the following to your `web.config`. The rule will enable logging for all pos
 </tracing>
 ```
 
-> To find out more providers and areas, you can look up in `C:\Windows\system32\inetsrv\config\applicationhost.config`, under `/system.webServer/tracing/traceProviderDefinitions`.
+> To find out more providers and areas, you can look them up in `C:\Windows\system32\inetsrv\config\applicationhost.config`, under `/system.webServer/tracing/traceProviderDefinitions`.
 
 ## Copy the log and view it locally
 
-> Before you can access the file system in the container, you need to stop it first. Otherwise, it will show `The process cannot access the file because it is being used by another process. (0x20)`.
+> Before you can access the file system in the container, you need to stop the container first. Otherwise, it will show `The process cannot access the file because it is being used by another process. (0x20)` error.
 
-Run `docker cp <your-container-name>:C:\inetpub\logs\FailedReqLogFiles <local-destination-path>` to copy the files to your local drive. The logs need to be translated by XSLT, thus, you can open them in Internet Explorer.
+Run `docker cp <your-container-name>:C:\inetpub\logs\FailedReqLogFiles <local-destination-path>` to copy the files to your local drive. The logs need to be translated by XSLT, thus, you need to open them in Internet Explorer.
+
+# Contributions
+
+Like us, please [star](https://github.com/compulim/docker-iisnode/stargazers) us.
+
+If you found an issue or suggest a version bump, please [file an issue](https://github.com/compulim/docker-iisnode/issues) to us.
