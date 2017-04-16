@@ -2,6 +2,8 @@
 
 This is a Windows Container image. You can find the [Dockerfile](https://github.com/compulim/docker-iisnode/blob/master/Dockerfile) on GitHub.
 
+This [article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) is a quick tutorial for running Docker on Windows 10.
+
 # How to use this image?
 
 ## Pull this image from Docker Hub
