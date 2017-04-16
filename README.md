@@ -56,13 +56,13 @@ There are few more steps to enable Failed Request Tracing and view its logs:
 2. Create a tracing rule
 3. Copy the log to local drive
 
-## Enable FREB for the site
+## Enable Failed Request Tracing for the site
 
 Run `C:\Windows\system32\inetsrv\appcmd configure trace "Production Site" /enablesite`.
 
 It will enable Failed Request Tracing for site named "Production Site". By default, it will write to `C:\inetpub\logs\FailedReqLogFiles\W3SVC0000000000`, with up to 50 rolling files.
 
-## Create a FREB rule
+## Create a tracing rule
 
 Add the following to your `web.config`. The rule will enable logging for all possible combinations.
 
