@@ -1,12 +1,12 @@
 # Internet Information Services (IIS) with Node.js and iisnode
 
-This is a Windows container image. You can find the [Dockerfile](https://github.com/compulim/docker-iisnode/blob/master/Dockerfile) on GitHub.
+This is a Windows Container image. You can find the [Dockerfile](https://github.com/compulim/docker-iisnode/blob/master/Dockerfile) on GitHub.
 
 # How to use this image?
 
 ## Pull this image from Docker Hub
 
-> Make sure your Docker is running in [Windows container mode](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
+> Make sure your Docker is running in [Windows Container mode](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 Run `docker pull compulim/iisnode`, to pull the image to your local repository.
 
