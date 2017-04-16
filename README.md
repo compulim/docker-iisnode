@@ -1,10 +1,18 @@
-# Internet Information Services (IIS) with iisnode and Node.js
+# Internet Information Services (IIS) with Node.js and iisnode
 
-This is a Windows container image.
+This is a Windows container image. You can find the [Dockerfile](https://github.com/compulim/docker-iisnode/blob/master/Dockerfile) on GitHub.
 
 # How to use this image?
 
-Add the following to your `dockerfile`. It will copies all your files to `C:\site` and host a new website named "Production Site" on port 8000.
+## Pull this image from Docker Hub
+
+> Make sure your Docker is running in [Windows container mode](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
+
+Run `docker pull compulim/iisnode`, to pull the image to your local repository.
+
+## Prepare your Dockerfile
+
+Add the following to your `Dockerfile`. It will copies all your files to `C:\site` and host a new website named "Production Site" on port 8000.
 
 ```dockerfile
 FROM compulim/compulim-info
@@ -16,16 +24,68 @@ RUN
 EXPOSE 8000
 ```
 
-Once the container starts, you'll need to finds its IP address so that you can connect to your running container from a browser. You use the docker inspect command to do that:
+## Build it
 
-```
-docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" my-running-site
+Run `docker build -t <your-image-name> <path-to-your-dockerfile>`.
+
+> If you found Docker is taking long time to send many files to its daemon, you can add a `.dockerignore` or move your `Dockerfile` deeper inside your file hierarchy.
+
+## Run it on Docker
+
+Run `docker run -p 8000:8000 --name <your-container-name> <your-image-name>`.
+
+This will run the Docker image and expose port 8000.
+
+> To expose as port 80, replace it with `-p 80:8000`.
+
+To connect to your web server, first, you need to find out the IP address associated to the container.
+
+Run `docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" <your-container-name>` and it should display the IP address, for example, 172.25.221.24.
+
+Then browse to [http://172.25.221.24:8000/](http://172.25.221.24:8000/).
+
+# How to enable Failed Request Tracing?
+
+Failed Request Tracing is one of the very powerful diagnostic tool built into IIS.
+
+In this Docker image, we have already installed "Web-Http-Tracing", which is essential for enabling FREB logs.
+
+There are few more steps to enable Failed Request Tracing and view its logs:
+
+1. Enable Failed Request Tracing for the site
+2. Create a tracing rule
+3. Copy the log to local drive
+
+## Enable FREB for the site
+
+Run `C:\Windows\system32\inetsrv\appcmd configure trace "Production Site" /enablesite`.
+
+It will enable Failed Request Tracing for site named "Production Site". By default, it will write to `C:\inetpub\logs\FailedReqLogFiles\W3SVC0000000000`, with up to 50 rolling files.
+
+## Create a FREB rule
+
+Add the following to your `web.config`. The rule will enable logging for all possible combinations.
+
+```xml
+<tracing>
+  <traceFailedRequests>
+    <add path="*">
+      <traceAreas>
+        <add provider="ASP" verbosity="Verbose" />
+        <add provider="ASPNET" areas="AppServices,Infrastructure,Module,Page" verbosity="Verbose" />
+        <add provider="ISAPI Extension" verbosity="Verbose" />
+        <add provider="WWW Server" areas="Authentication,Cache,CGI,Compression,FastCGI,Filter,iisnode,Module,RequestNotifications,Rewrite,Security,StaticFile,WebSocket" verbosity="Verbose" />
+      </traceAreas>
+      <failureDefinitions statusCodes="200-599" />
+    </add>
+  </traceFailedRequests>
+</tracing>
 ```
 
-You will see an output similar to this:
+> To find out more providers and areas, you can look up in `C:\Windows\system32\inetsrv\config\applicationhost.config`, under `/system.webServer/tracing/traceProviderDefinitions`.
 
-```
-172.28.103.186
-```
+## Copy the log and view it locally
 
-You can connect the running container using the IP address and configured port, http://172.28.103.186:8000 in the example shown.
+> Before you can access the file system in the container, you need to stop it first. Otherwise, it will show `The process cannot access the file because it is being used by another process. (0x20)`.
+
+Run `docker cp <your-container-name>:C:\inetpub\logs\FailedReqLogFiles <local-destination-path>` to copy the files to your local drive. The logs need to be translated by XSLT, thus, you can open them in Internet Explorer.
