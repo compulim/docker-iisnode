@@ -35,7 +35,7 @@ Run `docker build -t <your-image-name> <path-to-your-dockerfile>`.
 
 ## Run it on Docker
 
-Run `docker run -p 8000:8000 --name <your-container-name> <your-image-name>`.
+Run `docker run -d -p 8000:8000 --name <your-container-name> <your-image-name>`.
 
 This will run the Docker image and expose port 8000.
 
