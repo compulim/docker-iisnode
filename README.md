@@ -30,7 +30,6 @@ FROM compulim/compulim-info
 
 ADD . /site
 RUN powershell -NoProfile -Command Import-module IISAdministration; New-IISSite -Name 'Production Site' -PhysicalPath C:\site -BindingInformation '*:8000:'
-RUN
 
 EXPOSE 8000
 ```
@@ -41,15 +40,15 @@ Before running your Docker image in a container, you need to use your Dockerfile
 
 Run `docker build -t <your-image-name> <path-to-your-dockerfile>`.
 
-> If you found Docker is taking long time and send many unnecessary files to its daemon, you can add a `.dockerignore` or move your `Dockerfile` deeper inside your file hierarchy.
+> If you found Docker is taking long time and sending many unnecessary files to its daemon, you can add a `.dockerignore` or move your `Dockerfile` deeper inside your file hierarchy.
 
 ## Run it on Docker
 
-Run `docker run -p 8000:8000 --name <your-container-name> <your-image-name>`.
+Run `docker run -d -p 8000:8000 --name <your-container-name> <your-image-name>`.
 
 This will run the Docker image and expose port 8000.
 
-> To expose as host port 80, replace it with `-p 80:8000`.
+> To expose on host as port 80, replace it with `-p 80:8000`.
 
 To connect to your web server, first, you need to find out the IP address associated to the container.
 
