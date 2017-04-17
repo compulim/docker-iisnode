@@ -4,6 +4,15 @@ This is a Windows Container image. You can find the [Dockerfile](https://github.
 
 This [article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) is a quick tutorial for running Docker on Windows 10.
 
+# Version
+
+| Name                       | Version         |
+| -------------------------- | --------------- |
+| microsoft/nanoserver image | 10.0.14393.1066 |
+| iisnode                    | 0.2.21 (x64)    |
+| URL Rewrite                | 2.0 (x64)       |
+| Node.js for Windows        | 7.9.0 (x64)     |
+
 # How to use this image?
 
 ## Pull this image from Docker Hub
