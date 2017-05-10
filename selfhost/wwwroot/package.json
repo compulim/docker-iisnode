@@ -1,0 +1,15 @@
+{
+  "name": "docker-iisnode-selfhost",
+  "version": "1.0.0",
+  "description": "Self-host test for compulim/iisnode image",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "William Wong <compulim@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
