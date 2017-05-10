@@ -11,7 +11,7 @@ This [article](https://docs.microsoft.com/en-us/virtualization/windowscontainers
 | microsoft/nanoserver image | 10.0.14393.1066 |
 | iisnode                    | 0.2.21 (x64)    |
 | URL Rewrite                | 2.0 (x64)       |
-| Node.js for Windows        | 7.9.0 (x64)     |
+| Node.js for Windows        | 7.10.0 (x64)    |
 
 # How to use this image?
 
