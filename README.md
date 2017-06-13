@@ -8,10 +8,10 @@ This [article](https://docs.microsoft.com/en-us/virtualization/windowscontainers
 
 | Name                       | Version         |
 | -------------------------- | --------------- |
-| microsoft/iis image        | 10.0.14393.1066 |
+| microsoft/iis image        | 10.0.14393.1198 |
 | iisnode                    | 0.2.21 (x64)    |
 | URL Rewrite                | 2.0 (x64)       |
-| Node.js for Windows        | 8.0.0 (x64)     |
+| Node.js for Windows        | 8.1.0 (x64)     |
 
 # How to use this image?
 
