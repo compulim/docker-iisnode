@@ -1,0 +1,15 @@
+{
+  "name": "iisnode",
+  "version": "8.2.1",
+  "description": "Dockerfile for iisnode",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compulim/docker-iisnode.git"
+  },
+  "author": "William Wong <compulim@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compulim/docker-iisnode/issues"
+  },
+  "homepage": "https://hub.docker.com/r/compulim/iisnode/"
+}
