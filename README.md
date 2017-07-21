@@ -1,5 +1,7 @@
 # Internet Information Services (IIS) with Node.js and iisnode
 
+![https://compulim.visualstudio.com/_apis/public/build/definitions/77677cc8-077c-44b6-9cfc-25673974c1dc/3/badge](https://compulim.visualstudio.com/_apis/public/build/definitions/77677cc8-077c-44b6-9cfc-25673974c1dc/3/badge)
+
 This is a Windows Container image. You can find the [Dockerfile](https://github.com/compulim/docker-iisnode/blob/master/Dockerfile) on GitHub.
 
 This [article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) is a quick tutorial for running Docker on Windows 10.
